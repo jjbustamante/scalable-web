@@ -123,7 +123,7 @@ Response examples:
 }
 ```
 
-*Files are not same size*
+*Files are not equal size*
 ```json
 { "id":"1",
   "file1":"test0.txt",
@@ -142,3 +142,7 @@ Response examples:
   "method":"LEFT"
 }
 ```
+In this case, for example *00000001 102 98* it means:
+ - offset: 1 
+ - length for data in file 1: 102
+ - lenght for data in file 2: 98
