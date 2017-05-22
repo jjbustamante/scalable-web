@@ -29,6 +29,9 @@ import com.waes.scalable.web.rest.dto.Metadata;
 import com.waes.scalable.web.rest.validation.DiffFiles;
 import com.waes.scalable.web.rest.validation.DiffID;
 
+/**
+ * The Class DiffController.
+ */
 @RestController
 @RequestMapping("/v1")
 @Validated
@@ -43,14 +46,29 @@ public class DiffController {
 	@Autowired
 	private DiffMapper mapper;
 	
+	/** The Constant LOG. */
 	private static final Logger LOG = LoggerFactory.getLogger(DiffController.class);
 		
 
+	/**
+	 * Return Diff state.
+	 *
+	 * @param id the id
+	 * @return the response entity
+	 */
 	@RequestMapping(value = "/diff/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<DiffDTO> diff(@DiffID @PathVariable("id") String id) {
 		return new ResponseEntity<DiffDTO>(mapper.convert(facade.get(id)), HttpStatus.OK);
 	}
 
+	/**
+	 * Diff left.
+	 *
+	 * @param id the id
+	 * @param metadata the metadata
+	 * @param files the files
+	 * @return the response entity
+	 */
 	@PostMapping(value = "/diff/{id}/left", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> diffLeft(@DiffID @PathVariable("id") String id,  @RequestPart(name = "meta", required = false) Metadata metadata,
 			 @DiffFiles @ModelAttribute("files") FileUploadForm files) {
@@ -60,6 +78,14 @@ public class DiffController {
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 
+	/**
+	 * Diff right.
+	 *
+	 * @param id the id
+	 * @param metadata the metadata
+	 * @param files the files
+	 * @return the response entity
+	 */
 	@PostMapping(value = "/diff/{id}/right", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> diffRight(@DiffID @PathVariable("id") String id,
 			@RequestPart(name = "meta", required = false) Metadata metadata, @DiffFiles @ModelAttribute("files") FileUploadForm files) {
@@ -69,6 +95,11 @@ public class DiffController {
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 
+	/**
+	 * Creates a Diff instance into the system
+	 *
+	 * @return the response entity
+	 */
 	@PostMapping(value = "/diff", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<DiffDTO> create() {
 
@@ -83,12 +114,25 @@ public class DiffController {
 	 * Internal Methods
 	 * ***********************/
 	
+	/**
+	 * Process a diff calculation request
+	 *
+	 * @param id the id
+	 * @param method diff method to be used (left or right)
+	 * @param mfile1  
+	 * @param mfile2  
+	 */
 	private void process(String id, DiffMethod method, MultipartFile mfile1, MultipartFile mfile2) {
 		File file1 = storageService.store(id, mfile1);
 		File file2 = storageService.store(id, mfile2);
 		this.facade.calculate(id, method , file1, file2);
 	}
 	
+	/**
+	 * Handle metadata.
+	 *
+	 * @param metadata the metadata
+	 */
 	private void handleMetadata(Metadata metadata) {
 		if(metadata != null) {
 			LOG.info(String.format("Metadata received: Application: %s , Author: %s", metadata.getApplication(), metadata.getAuthor()));

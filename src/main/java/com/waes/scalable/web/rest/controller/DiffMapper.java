@@ -11,22 +11,42 @@ import com.waes.scalable.web.data.Diff;
 import com.waes.scalable.web.diff.api.DiffMethod;
 import com.waes.scalable.web.rest.dto.DiffDTO;
 
+/**
+ * The Class DiffMapper.
+ */
 public class DiffMapper {
 
+	/** The model mapper. */
 	@Autowired
 	private ModelMapper modelMapper;
 
+	/**
+	 * Instantiates a new diff mapper.
+	 *
+	 * @param modelMapper the model mapper
+	 */
 	public DiffMapper(ModelMapper modelMapper) {
 
 		this.modelMapper = modelMapper;
 		this.modelMapper.addConverter(domainConverter());
 	}
 
+	/**
+	 * Convert.
+	 *
+	 * @param diff the diff
+	 * @return the diff DTO
+	 */
 	public DiffDTO convert(Diff diff) {
 
 		return modelMapper.map(diff, DiffDTO.class);
 	}
 
+	/**
+	 * Domain converter.
+	 *
+	 * @return the converter
+	 */
 	private Converter<Diff, DiffDTO> domainConverter() {
 		return new AbstractConverter<Diff, DiffDTO>() {
 			@Override

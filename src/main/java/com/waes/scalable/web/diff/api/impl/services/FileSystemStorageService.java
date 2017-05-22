@@ -13,16 +13,29 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.waes.scalable.web.diff.api.IFilesStorageService;
 
+
+/**
+ * The Class FileSystemStorageService.
+ */
 @Service
 public class FileSystemStorageService implements IFilesStorageService {
 
+	/** The root location. */
 	private final Path rootLocation;
 
+	/**
+	 * Instantiates a new file system storage service.
+	 *
+	 * @param properties the properties
+	 */
 	@Autowired
 	public FileSystemStorageService(FileStorageProperties properties) {
 		this.rootLocation = Paths.get(properties.getLocation());
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.waes.scalable.web.diff.api.IFilesStorageService#init()
+	 */
 	@Override
 	public void init() {
 		try {
@@ -34,6 +47,9 @@ public class FileSystemStorageService implements IFilesStorageService {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.waes.scalable.web.diff.api.IFilesStorageService#store(java.lang.String, org.springframework.web.multipart.MultipartFile)
+	 */
 	@Override
 	public File store(String preffix, MultipartFile file) {
 		try {
@@ -52,6 +68,9 @@ public class FileSystemStorageService implements IFilesStorageService {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.waes.scalable.web.diff.api.IFilesStorageService#load(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public File load(String preffix, String filename) {
 		Path dest = this.rootLocation.resolve(Paths.get(preffix));

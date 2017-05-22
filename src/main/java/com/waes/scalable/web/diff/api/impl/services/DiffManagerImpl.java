@@ -20,6 +20,9 @@ import com.waes.scalable.web.diff.api.IDiffResult;
 import com.waes.scalable.web.diff.api.IDiffService;
 import com.waes.scalable.web.rest.controller.DiffMapper;
 
+/**
+ * The Class DiffManagerImpl.
+ */
 @Service
 @Transactional
 public class DiffManagerImpl implements IDiffManager {
@@ -29,37 +32,78 @@ public class DiffManagerImpl implements IDiffManager {
 	private IDiffFactory diffFactory;
 	private DiffMapper mapper;
 	
+	
+	/**
+	 * Gets the diff service.
+	 *
+	 * @return the diff service
+	 */
 	public IDiffService getDiffService() {
 		return diffService;
 	}
 
+	/**
+	 * Sets the diff service.
+	 *
+	 * @param diffService the new diff service
+	 */
 	@Autowired
 	public void setDiffService(IDiffService diffService) {
 		this.diffService = diffService;
 	}
 
+	/**
+	 * Gets the diff DAO.
+	 *
+	 * @return the diff DAO
+	 */
 	public IDiffRepository getDiffDAO() {
 		return diffDAO;
 	}
 
+	/**
+	 * Sets the diff DAO.
+	 *
+	 * @param diffDAO the new diff DAO
+	 */
 	@Autowired
 	public void setDiffDAO(IDiffRepository diffDAO) {
 		this.diffDAO = diffDAO;
 	}
 
+	/**
+	 * Gets the diff factory.
+	 *
+	 * @return the diff factory
+	 */
 	public IDiffFactory getDiffFactory() {
 		return diffFactory;
 	}
 
+	/**
+	 * Sets the diff factory.
+	 *
+	 * @param diffFactory the new diff factory
+	 */
 	@Autowired
 	public void setDiffFactory(IDiffFactory diffFactory) {
 		this.diffFactory = diffFactory;
 	}
 		
+	/**
+	 * Gets the mapper.
+	 *
+	 * @return the mapper
+	 */
 	public DiffMapper getMapper() {
 		return mapper;
 	}
 
+	/**
+	 * Sets the mapper.
+	 *
+	 * @param mapper the new mapper
+	 */
 	@Autowired
 	public void setMapper(DiffMapper mapper) {
 		this.mapper = mapper;
@@ -69,6 +113,9 @@ public class DiffManagerImpl implements IDiffManager {
 	 * API
 	 ***************************/
 	
+	/* (non-Javadoc)
+	 * @see com.waes.scalable.web.diff.api.IDiffManager#create()
+	 */
 	@Override
 	public Diff create() {
 		
@@ -77,6 +124,9 @@ public class DiffManagerImpl implements IDiffManager {
 		return diff;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.waes.scalable.web.diff.api.IDiffManager#calculate(java.lang.String, com.waes.scalable.web.diff.api.DiffMethod, java.io.File, java.io.File)
+	 */
 	@Override
 	public void calculate(String id, DiffMethod method, File file1, File file2) {
 		
@@ -94,6 +144,9 @@ public class DiffManagerImpl implements IDiffManager {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.waes.scalable.web.diff.api.IDiffManager#get(java.lang.String)
+	 */
 	@Override
 	public Diff get(String id) {
 		
@@ -104,6 +157,9 @@ public class DiffManagerImpl implements IDiffManager {
 		return this.diffDAO.findOne(Long.parseLong(id));
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.waes.scalable.web.diff.api.IDiffManager#isValidDiff(java.lang.String)
+	 */
 	@Override
 	public boolean isValidDiff(String id) {
 		
@@ -117,6 +173,12 @@ public class DiffManagerImpl implements IDiffManager {
 	 * Internal Methods
 	 * ***********************/
 	
+	/**
+	 * Prepare.
+	 *
+	 * @param diff the diff
+	 * @param result the result
+	 */
 	private void prepare(Diff diff , IDiffResult result) {
 		
 		if(diff.getResult() == null) {
@@ -130,6 +192,11 @@ public class DiffManagerImpl implements IDiffManager {
 		}
 	}
 	
+	/**
+	 * Removes the details.
+	 *
+	 * @param diff the diff
+	 */
 	private void removeDetails(Diff diff) {
 		if(diff.getResult() != null) {
 			if(diff.getResult().getId() > 0) {

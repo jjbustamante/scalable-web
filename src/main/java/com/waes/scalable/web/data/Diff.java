@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 /**
  * The Class Diff.
  * 
- * This class is the persistent representation for a Diff execution in the application
+ * This class is an Entity representation for a Diff execution in the application. 
  */
 @Entity
 @Table(name = "diff")
@@ -27,26 +27,21 @@ public class Diff implements Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 4075371984144256609L;
 
-	/** The id. */
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 		
-	/** The created at. */
 	@Column(name="created_at")
 	@NotNull
 	private Date createdAt;
 	
-	/** The last update. */
 	@Column(name="last_updated")
 	private Date lastUpdate;
 	
-	/** The origin. */
 	@Column(name="origin")
 	@NotNull
 	private String origin;
 	
-    /** The result. */
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "diff", cascade = CascadeType.ALL)
     private DiffResult result;
 	

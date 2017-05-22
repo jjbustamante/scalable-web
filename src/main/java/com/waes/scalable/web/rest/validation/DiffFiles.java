@@ -8,14 +8,32 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
+/**
+ * The Interface DiffFiles.
+ */
 @Target({ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy=DiffFilesContraintValidation.class)
 public @interface DiffFiles {
 
+	/**
+	 * Message.
+	 *
+	 * @return the string
+	 */
 	String message() default "Diff files";
 	
+	/**
+	 * Groups.
+	 *
+	 * @return the class[]
+	 */
 	Class<?>[] groups() default {};
         
+	/**
+	 * Payload.
+	 *
+	 * @return the class<? extends payload>[]
+	 */
 	Class<? extends Payload>[] payload() default {};
 }
