@@ -34,6 +34,12 @@ What are we doing? We are creating a microservice to calculate diff between file
   1. We can save every diff calculation done for the same ID and return the latest one
   2. We can discard old diff results and just saved the latest one (Let's do this)
 
+## Overview
+
+![alt text](https://github.com/jjbustamante/scalable-web/blob/master/overview.png)
+
+Previous image shows an overview with the main components:
+
 ## Build Requirements
 
 Before being able to build he code you need:
