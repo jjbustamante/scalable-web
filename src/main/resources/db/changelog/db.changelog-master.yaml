@@ -1,0 +1,82 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: jbustamante
+      changes:
+        - createTable:
+            tableName: diff
+            columns:
+              - column:
+                  name: id
+                  type: long
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: date
+                  constraints:
+                    nullable: false
+              - column: 
+                  name: last_updated
+                  type: date
+              - column: 
+                  name: origin
+                  type: varchar(250)
+                  constraints:
+                    nullable: false  
+        - createTable:
+            tableName: diff_result
+            columns:
+              - column:
+                  name: id
+                  type: long
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: diff_id
+                  type: long
+              - column: 
+                  name: method
+                  type: int 
+              - column:
+                  name: file_1
+                  type: varchar(255)
+              - column:
+                  name: file_2
+                  type: varchar(255)
+        - addForeignKeyConstraint:
+            baseColumnNames: diff_id
+            baseTableName: diff_result
+            constraintName: fk_diff_result_diff
+            referencedColumnNames: id
+            referencedTableName: diff        
+        - createTable:
+            tableName: diff_result_details
+            columns:
+              - column:
+                  name: id
+                  type: long
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: diff_result_id
+                  type: long
+                  constraints:
+                    nullable: false
+              - column: 
+                  name: message
+                  type: varchar(500)
+                  constraints:
+                    nullable: false              
+        - addForeignKeyConstraint:
+            baseColumnNames: diff_result_id
+            baseTableName: diff_result_details
+            constraintName: fk_diff_result_detail_diff_result
+            referencedColumnNames: id
+            referencedTableName: diff_result
