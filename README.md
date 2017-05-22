@@ -59,6 +59,17 @@ After maven download all the dependencies need it, you should see a success mess
 - run: *mvn spring-boot:run*
 - After everything is fine, the microservice should be running in your http://localhost:8080/v1/diff 
 
+## How to check the database
+
+The database implementation is using InMemory H2 db, also the migration schema was done using liquibase. 
+To access the database just open a browser with the following url: http://localhost:8080/h2-console once the application is running
+
+Use the following parameters to connect:
+
+*Driver Class:	 org.h2.Driver*
+*JDBC URL:	 jdbc:h2:mem:testdb*
+*User Name: sa*
+
 ## REST API Documentation
 
 I tried to configured the REST documentation using swagger, but unfortunately it didn't work, I think some problem with the configuration. The swagger-iu is available at: http://localhost:8080/swagger-ui.html when the application is running.
