@@ -2,8 +2,6 @@ package com.waes.scalable.web.rest.controller;
 
 import java.io.File;
 
-import javax.validation.constraints.Null;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,6 @@ import com.waes.scalable.web.data.Diff;
 import com.waes.scalable.web.diff.api.DiffMethod;
 import com.waes.scalable.web.diff.api.IDiffManager;
 import com.waes.scalable.web.diff.api.IFilesStorageService;
-import com.waes.scalable.web.diff.api.impl.DiffServiceImplTest;
 import com.waes.scalable.web.rest.dto.DiffDTO;
 import com.waes.scalable.web.rest.dto.FileUploadForm;
 import com.waes.scalable.web.rest.dto.Metadata;

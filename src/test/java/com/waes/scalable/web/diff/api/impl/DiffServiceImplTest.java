@@ -6,11 +6,10 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.nio.file.Paths;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.waes.scalable.web.diff.api.IDiffResult;
 import com.waes.scalable.web.diff.api.impl.services.DiffServiceImpl;
