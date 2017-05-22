@@ -70,8 +70,14 @@ For testing I used curl.
 ### Create diff ID
 
 For creating the diff ID run: *curl -v -X POST http://localhost:8080/v1/diff* it should return a json object similar to: 
-`{"id":"1","file1":null,"file2":null,"differences":null,"method":null}`
-
+```json
+{ "id":"1",
+  "file1":null,
+  "file2":null,
+  "differences":null,
+  "method":null
+}
+```
 ### Execute diff operation 
 For executing a diff operation run: 
 
@@ -104,3 +110,35 @@ For retrieving the result for a given diff calculation execute the following com
 
 where: 
  - id : Diff id obtained from POST command
+ 
+Response examples:
+
+*Files are equal*
+```json
+{ "id":"1",
+  "file1":"test0.txt",
+  "file2":"test2.txt",
+  "differences":["Files are Equal"],
+  "method":"LEFT"
+}
+```
+
+*Files are not same size*
+```json
+{ "id":"1",
+  "file1":"test0.txt",
+  "file2":"test2.txt",
+  "differences":["Files are not equal size"],
+  "method":"LEFT"
+}
+```
+
+*Files are same size*
+```json
+{ "id":"1",
+  "file1":"test0.txt",
+  "file2":"test2.txt",
+  "differences":["00000001 102 98","00000008 114 111","00000006 98 102","00000003 111 114","00000007 97 111","00000002 111 97"],
+  "method":"LEFT"
+}
+```
