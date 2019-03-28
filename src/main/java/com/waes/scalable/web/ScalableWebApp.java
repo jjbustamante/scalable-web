@@ -37,6 +37,7 @@ public class ScalableWebApp
     @Bean
 	CommandLineRunner init(IFilesStorageService storage) {
 		return (args) -> {
+      String foo = "error";
 			storage.init();
 		};
 	}
