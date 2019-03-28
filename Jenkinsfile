@@ -1,11 +1,7 @@
 #!/usr/bin/env groovy
 
 pipeline {
-    agent {
-        node {
-            label "firstrain"
-        }
-    } 
+    agent none
     options {
         timestamps()
     }
