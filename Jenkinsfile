@@ -8,11 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                retry(3) {
-                    dir(".") {
-                        sh "mvn test"
-                    }
-                }
+                sh "mvn test"    
             }
         }
     }
