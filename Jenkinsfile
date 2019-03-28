@@ -5,6 +5,10 @@ pipeline {
     options {
         timestamps()
     }
+    tools { 
+        maven 'Maven 3.3.9' 
+        jdk 'JDK 8' 
+    }
     stages {
         stage('Build') {
             steps {
