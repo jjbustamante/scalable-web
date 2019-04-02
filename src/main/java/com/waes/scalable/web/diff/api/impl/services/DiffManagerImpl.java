@@ -142,6 +142,10 @@ public class DiffManagerImpl implements IDiffManager {
 		
 		this.diffDAO.save(diff);
 		
+		int x = 10;
+		if ( x == Double.NaN) {
+				x++;
+		}
 	}
 
 	/* (non-Javadoc)
