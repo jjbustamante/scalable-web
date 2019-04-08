@@ -141,10 +141,7 @@ public class DiffManagerImpl implements IDiffManager {
 		diff.setLastUpdate(Calendar.getInstance().getTime());
 		
 		this.diffDAO.save(diff);
-
-		String evaluation = 10 == Double.NaN ? "bad" : "good";
-		System.out.println(evaluation);
-
+		
 	}
 
 	/* (non-Javadoc)
