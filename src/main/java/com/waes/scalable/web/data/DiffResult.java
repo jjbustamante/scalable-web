@@ -1,6 +1,7 @@
 package com.waes.scalable.web.data;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +30,7 @@ public class DiffResult implements Serializable {
 	private static final long serialVersionUID = 3995909119829726062L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Size(max = 255)
@@ -145,7 +146,7 @@ public class DiffResult implements Serializable {
 	 * @return the details
 	 */
 	public Set<DiffResultDetails> getDetails() {
-		return details;
+		return Collections.unmodifiableSet(details);
 	}
 
 	/**
@@ -154,7 +155,8 @@ public class DiffResult implements Serializable {
 	 * @param details the new details
 	 */
 	public void setDetails(Set<DiffResultDetails> details) {
-		this.details = details;
+		this.details.clear();
+		this.details.addAll(details);
 	}
 	
 	/**

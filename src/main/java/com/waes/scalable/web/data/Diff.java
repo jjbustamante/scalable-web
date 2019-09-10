@@ -28,7 +28,7 @@ public class Diff implements Serializable {
 	private static final long serialVersionUID = 4075371984144256609L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 		
 	@Column(name="created_at")
@@ -57,7 +57,7 @@ public class Diff implements Serializable {
 	 * @param origin the origin
 	 */
 	public Diff(Date createdAt, String origin){
-		this.createdAt = createdAt;
+		this.createdAt = createdAt != null ? (Date) createdAt.clone() : null;
 		this.origin = origin;
 	}
 

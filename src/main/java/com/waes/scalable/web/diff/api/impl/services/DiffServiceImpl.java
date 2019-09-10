@@ -13,7 +13,6 @@ import com.waes.scalable.web.diff.api.IDiffService;
 import com.waes.scalable.web.diff.api.impl.DiffEqualResult;
 import com.waes.scalable.web.diff.api.impl.DiffNotEqualSizeResult;
 import com.waes.scalable.web.diff.api.impl.DiffSameSizeResult;
-import com.waes.scalable.web.rest.controller.DiffController;
 
 /**
  * The Class DiffServiceImpl.

@@ -12,6 +12,7 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -103,8 +104,8 @@ public class DiffManagerImplTest {
 	public void testGet_with_valid_id() {
 	
 		// Setup fixture
-		when(mockDAO.exists(eq(Long.valueOf(VALID_ID)))).thenReturn(true);
-		when(mockDAO.findOne(eq(Long.valueOf(VALID_ID)))).thenReturn(expected);
+		when(mockDAO.existsById(eq(Long.valueOf(VALID_ID)))).thenReturn(true);
+		when(mockDAO.findById(eq(Long.valueOf(VALID_ID)))).thenReturn(Optional.of(expected));
 		
 		// Exercise the SUT
 		Diff actualDiff = SUT.get(VALID_ID);
@@ -121,7 +122,7 @@ public class DiffManagerImplTest {
 	public void testGet_with_invalid_id() {
 		
 		// Setup fixture
-		when(mockDAO.exists(eq(Long.valueOf(INVALID_ID)))).thenReturn(false);
+		when(mockDAO.existsById(eq(Long.valueOf(INVALID_ID)))).thenReturn(false);
 		
 		// Exercise the SUT
 		Diff diff = SUT.get(INVALID_ID);
@@ -255,8 +256,8 @@ public class DiffManagerImplTest {
 	 */
 	private void setUpCalculateFixture(IDiffResult result) {
 		
-		when(mockDAO.exists(eq(Long.valueOf(VALID_ID)))).thenReturn(true);
-		when(mockDAO.findOne(eq(Long.valueOf(VALID_ID)))).thenReturn(expected);
+		when(mockDAO.existsById(eq(Long.valueOf(VALID_ID)))).thenReturn(true);
+		when(mockDAO.findById(eq(Long.valueOf(VALID_ID)))).thenReturn(Optional.of(expected));
 		when(mockDiffService.diff(eq(file1), eq(file2))).thenReturn(result);
 		when(file1.getName()).thenReturn("foo");
 		when(file2.getName()).thenReturn("bar");

@@ -132,7 +132,7 @@ public class DiffManagerImpl implements IDiffManager {
 		
 		if(!isValidDiff(id)) { return;}
 		
-		Diff diff = this.diffDAO.findOne(Long.parseLong(id));
+		Diff diff = this.diffDAO.findById(Long.parseLong(id)).get();
 		IDiffResult result = this.diffService.diff(file1, file2);	
 		prepare(diff, result);
 		diff.getResult().setFile1(file1.getName());
@@ -154,7 +154,7 @@ public class DiffManagerImpl implements IDiffManager {
 			// error
 			return null;
 		}
-		return this.diffDAO.findOne(Long.parseLong(id));
+		return this.diffDAO.findById(Long.parseLong(id)).get();
 	}
 	
 	/* (non-Javadoc)
@@ -166,7 +166,7 @@ public class DiffManagerImpl implements IDiffManager {
 		if(StringUtils.isEmpty(id)) { 
 			return false; 
 		}
-		return this.diffDAO.exists(Long.parseLong(id));
+		return this.diffDAO.existsById(Long.parseLong(id));
 	}
 	
 	/* ***********************

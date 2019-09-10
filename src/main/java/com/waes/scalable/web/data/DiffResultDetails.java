@@ -26,7 +26,7 @@ public class DiffResultDetails implements Serializable {
 	private static final long serialVersionUID = 5358944525127096908L;
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Size(max = 500)

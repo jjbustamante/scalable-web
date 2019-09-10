@@ -6,7 +6,6 @@ package com.waes.scalable.web.diff.api;
 public enum DiffMethod {
 
 	LEFT(Values.LEFT),
-	
 	RIGHT(Values.RIGHT);
 	
 	/**

@@ -25,8 +25,8 @@ public class SwaggerConfig  {
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)  
           .select()                                  
-          .apis(RequestHandlerSelectors.basePackage("com.waes.scalable.web.rest.controller"))
-          .paths(PathSelectors.ant("/v1/*"))
+          .apis(RequestHandlerSelectors.any()) 
+          .paths(PathSelectors.any())
           .build();                                           
     }
 }

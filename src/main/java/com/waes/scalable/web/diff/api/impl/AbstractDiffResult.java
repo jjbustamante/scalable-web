@@ -1,6 +1,7 @@
 package com.waes.scalable.web.diff.api.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.waes.scalable.web.diff.api.IDiffResult;
@@ -25,7 +26,7 @@ public abstract class AbstractDiffResult implements IDiffResult {
 	 */
 	@Override
 	public List<String> getMessages() {
-		return messages;
+		return Collections.unmodifiableList(messages);
 	}
 	
 	/* (non-Javadoc)
