@@ -32,3 +32,4 @@ hs_err_pid*
 # My ignores
 request.json
 upload-dir
+.idea/
