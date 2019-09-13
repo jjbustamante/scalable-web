@@ -40,7 +40,7 @@ public enum DiffMethod {
 				return "LEFT";
 				
 			case Values.RIGHT:
-				return "RIGTH";
+				return "RIGHT";
 		}
     	return "UNDEFINED";
     }
